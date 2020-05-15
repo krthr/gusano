@@ -1,6 +1,49 @@
 import { EventEmitter } from "https://deno.land/std/node/events.ts";
 import { Block } from "./block.ts";
 
+export declare interface Engine {
+  /**
+   * It fires when the engine has ended the execution.
+   * @param event
+   * @param listener
+   */
+  on(
+    event: "end",
+    listener: (args: { result: any[]; time: number }) => void
+  ): this;
+
+  /**
+   * The execution has started.
+   * @param event
+   * @param listener
+   */
+  on(
+    event: "start",
+    listener: (args: { id: string; params: any[]; result: any[] }) => void
+  ): this;
+
+  /**
+   * A block has been executed.
+   * @param event
+   * @param listener
+   */
+  on(
+    event: "block result",
+    listener: (args: { id: string; params: any[]; result: any[] }) => void
+  ): this;
+
+  /**
+   * An error has ocurred.
+   * @param event
+   * @param listener
+   */
+  on(
+    event: "error",
+    listener: (args: { id: String; params: any[]; error: any }) => void
+  ): this;
+
+  on(event: string, listener: (args: any) => void): this;
+}
 /**
  * @author krthr
  */
@@ -30,7 +73,7 @@ export class Engine extends EventEmitter {
     private blocks: { [id: string]: Block },
     private route: {
       [id: string]: string | Function;
-    },
+    } = {}
   ) {
     super();
   }
@@ -47,7 +90,11 @@ export class Engine extends EventEmitter {
 
     this.startTime = Date.now();
 
-    this.emit("start", { id: initId, args, startTime: this.startTime });
+    this.emit("start", {
+      id: initId,
+      params: this.params,
+      startTime: this.startTime,
+    });
 
     while (true) {
       if (!this.actualId) break;
