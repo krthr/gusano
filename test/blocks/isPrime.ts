@@ -1,4 +1,4 @@
-import { Block } from "../../lib/block.ts";
+import { Block } from "../../index.ts";
 
 /**
  * This block test if `i` is a prime.

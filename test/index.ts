@@ -1,6 +1,6 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
-import { Block } from "../lib/block.ts";
-import { Engine } from "../lib/engine.ts";
+import { Block } from "../index.ts";
+import { Engine } from "../index.ts";
 
 import { isPrime } from "./blocks/isPrime.ts";
 import { generator } from "./blocks/generator.ts";
