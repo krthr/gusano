@@ -2,6 +2,8 @@
 
 > A minimal workflows lib for Deno 🦖
 
+## [API](https://deno.land/x/gusano)
+
 ## Simple example
 
 ```ts
