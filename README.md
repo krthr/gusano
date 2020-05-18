@@ -7,6 +7,7 @@
 ## Simple example
 
 ```ts
+import { Block, Engine } from 'https://raw.githubusercontent.com/krthr/gusano/master/index.ts'
 
 const sum : Block {
 
